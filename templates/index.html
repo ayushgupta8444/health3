@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Analytics Pro</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <div class="logo">
+                <h1>Health Analysis</h1>
+            </div>
+        </header>
+
+        <!-- Upload Section -->
+        <section id="upload-section" class="glass-panel">
+            <div class="upload-area" id="drop-zone">
+                <div class="upload-icon">📁</div>
+                <h3>Upload Patient Data</h3>
+                <p>Drag & drop your CSV or Excel file here, or click to browse.</p>
+                <input type="file" id="file-input" accept=".csv, .xlsx, .xls" hidden>
+                <button class="btn-primary" onclick="document.getElementById('file-input').click()">Browse Files</button>
+            </div>
+            <div id="loading-indicator" class="hidden">
+                <div class="spinner"></div>
+                <p>Training Advanced AI Models (XGBoost/SVR)...</p>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="hidden">
+            <div class="dashboard-header">
+                <h2>Clinical Dashboard</h2>
+                <div class="controls">
+                    <select id="dosha-filter" class="glass-select">
+                        <option value="All Diseases">All Diseases</option>
+                    </select>
+                    <button id="clear-btn" class="btn-secondary">Clear Data</button>
+                </div>
+            </div>
+
+            <!-- Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card glass-panel">
+                    <span class="metric-icon">👥</span>
+                    <div class="metric-info">
+                        <h4>Total Patients</h4>
+                        <h2 id="metric-patients">0</h2>
+                    </div>
+                </div>
+                <div class="metric-card glass-panel">
+                    <span class="metric-icon">⏳</span>
+                    <div class="metric-info">
+                        <h4>Avg Treatment Days</h4>
+                        <h2><span id="metric-recovery">0</span> <small>days</small></h2>
+                    </div>
+                </div>
+                <div class="metric-card glass-panel">
+                    <span class="metric-icon">⚕️</span>
+                    <div class="metric-info">
+                        <h4>Primary Condition</h4>
+                        <h2 id="metric-condition" class="text-highlight">N/A</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts-grid">
+                <div class="chart-card glass-panel">
+                    <h3>Treatment Duration by Age Group</h3>
+                    <canvas id="ageChart"></canvas>
+                </div>
+                <div class="chart-card glass-panel">
+                    <h3>Gender Distribution</h3>
+                    <canvas id="genderChart"></canvas>
+                </div>
+                <div class="chart-card glass-panel chart-wide">
+                    <h3>Visit Type</h3>
+                    <canvas id="visitChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
